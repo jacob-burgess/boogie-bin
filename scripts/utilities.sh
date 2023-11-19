@@ -125,7 +125,7 @@ run_command() {
     if [ -f "$cmd_path" ]; then
         "$cmd_path"
     else
-        print_colored_message "Error: Command \"$cmd_filename\" not found in \"$cmd_dir\"." "$RED"
+        p_ln "Error: Command '$cmd_filename' not found in '$cmd_dir'." "$RED"
         exit 1
     fi
 }
