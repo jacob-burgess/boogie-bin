@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# Directory containing this script
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Directory containing the command scripts
+CMD_DIR="$THIS_DIR/cmd" 
+
+# Directory containing the scripts directory
+SCRIPTS_DIR="$THIS_DIR/scripts"
+
+source "$SCRIPTS_DIR/utilities.sh"
+
+# Function to display usage information
+display_usage() {
+    local show_boogie="$1"
+    if [ -z "$show_boogie" ]; then
+        big_boogie
+    fi
+    
+    echo ""
+    echo ""
+    center_text "da boogie bin" "$BOLD"
+    echo ""
+    echo ""
+    p "Usage: " "$BOLD"
+    p_ln "boogie [command]"
+    p_ln "       boogie [-h | --help]\n"
+    p_ln "Commands:" "$BOLD"
+
+    # List all executable scripts in the directory along with their descriptions
+    for script in "$CMD_DIR"/*; do
+        if [ -f "$script" ]; then
+            # Get the script name and description
+            # status_color based on whether the script is executable
+            script_name=$(basename "$script")
+            status_color="$RED"
+            description_color="$GREEN"
+            is_executable "$script" && status_color="$CYAN"
+
+            if is_executable "$script"; then
+                description=$(get_description "$script")
+            else
+                description="This script is not executable. Try running 'chmod +x $CMD_DIR/$script_name'".
+                description_color="$RED"
+            fi
+            p "$(pad 8)$script_name" "$status_color"
+            spacing=$(printf "%*s" $((20 - ${#script_name})))
+            p_ln "$spacing$description" "$description_color"
+        fi
+    done
+}
+
+# Check if the CMD_DIR and SCRIPTS_DIR exist
+check_directories "$CMD_DIR" "$SCRIPTS_DIR"
+
+# Check the number of arguments provided
+if [ "$#" -eq 0 ]; then
+    display_usage
+elif [ "$#" -eq 1 ] && { [ "$1" == "-h" ] || [ "$1" == "--help" ]; }; then
+    display_usage
+elif [ "$#" -eq 1 ]; then
+    run_command "$1" "$CMD_DIR"
+else
+    # Display an error message for invalid usage
+    p_ln "Error: Invalid number of arguments." "$RED"
+    display_usage "1"
+    exit 1
+fi

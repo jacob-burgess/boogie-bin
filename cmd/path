@@ -1,0 +1,5 @@
+#! /bin/bash
+
+# Description: Print everything in your $PATH on a newline
+
+echo "${PATH//:/$'\n'}"

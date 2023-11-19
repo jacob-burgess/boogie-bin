@@ -1,0 +1,16 @@
+#! /bin/bash
+
+# Description: NOT WORKING Reload env vars in a project
+
+# Get the directory where boogie is called
+DIR="$(realpath)"
+
+# Check if .env file exists in the script's directory
+if [ -f "$DIR/.env" ]; then
+    # Change to the script's directory and run the commands
+    # (cd "$DIR" && set -a && source .env && set +a)
+else
+    # Display an error message
+    echo "Error: The .env file is not found in the script's directory."
+    exit 1
+fi

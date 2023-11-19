@@ -1,0 +1,18 @@
+#! /bin/bash
+
+# Description: NOT WORKING enter the python virtual environment in the current directory
+
+# Get the directory where boogie is called
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "$DIR"
+
+# Check if .env file exists in the current directory
+if [ -f "$DIR/.env" ]; then
+    # Change to the script's directory and run the commands
+    (cd "$DIR" && set -a && source .env && set +a)
+else
+    # Display an error message
+    echo "Error: The .env file is not found in the current directory."
+    exit 1
+fi

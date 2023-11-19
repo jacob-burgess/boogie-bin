@@ -1,0 +1,5 @@
+#! /bin/bash
+
+# Description: example of script that has not been `chmod +x`'d
+
+echo "bad"

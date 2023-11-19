@@ -1,0 +1,5 @@
+#! /usr/local/bin/node
+
+// Description: This is a test file to see if node is working.
+
+console.log("Hello World!");
