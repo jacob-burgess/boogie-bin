@@ -10,7 +10,7 @@ but i have no clue how to write code in bash, so idk why i did that. kinda fun t
 
 This is probably not the right way to do this kind of thing but its working, so im doing it.
 
-![boogie](./assets/example.gif)
+![boogie](./assets/usage.gif)
 
 ## to use this
 
