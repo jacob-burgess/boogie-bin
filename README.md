@@ -10,6 +10,8 @@ but i have no clue how to write code in bash, so idk why i did that. kinda fun t
 
 This is probably not the right way to do this kind of thing but its working, so im doing it.
 
+![boogie](./assets/example.gif)
+
 ## to use this
 
 First of all, you probably dont want to use this. Its not really meant for anyone else to use. But if you do, here's how:
